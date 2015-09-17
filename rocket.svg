@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="rocket.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="67.048827"
+     inkscape:cy="76.499208"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="958"
+     inkscape:window-height="1008"
+     inkscape:window-x="-7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 9.9821416,1042.3622 19.9999824,0 0,-68.72342 -19.9999824,0 z"
+       id="path2987"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 9.9821416,973.63878 3.3333154,-7.23404 13.333334,0 3.333333,7.23404 z"
+       id="path2989"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 13.315457,966.40474 0,-72.34042 13.333334,0 0,72.34042 z"
+       id="path2991"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 13.315457,894.06432 3.333334,-7.23404 6.666666,0 3.333334,7.23404 z"
+       id="path2993"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 16.648791,886.83028 0,-7.23404 6.666666,0 0,7.23404 z"
+       id="path2995"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none"
+       d="m 16.648791,879.59624 3.333333,-7.23404 3.333333,7.23404 z"
+       id="path2997"
+       inkscape:connector-curvature="0">
+      <title
+         id="title3012">pixels_per_meter:1.0</title>
+    </path>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 20,1042.3622 -5,10 10,0 z"
+       id="path3767"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 10,1042.3622 -5.516295,9.7247 9.986299,0.5231 z"
+       id="path3767-1"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 30,1042.3622 -4.293004,10.3233 9.975826,-0.695 z"
+       id="path3767-7"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 10,1042.3622 20,927.36218"
+       id="rocket_engine0"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path3020">
+      <title
+         id="title3026">thrust:3.402e7</title>
+    </path>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 20,1042.3622 20,927.36218"
+       id="rocket_engine1"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path3022">
+      <desc
+         id="desc3032">One engine from Saturn V stage 1.
+https://en.wikipedia.org/wiki/Saturn_V</desc>
+    </path>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 30,1042.3622 20,927.36218"
+       id="rocket_engine2"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path3024" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Segoe Print;-inkscape-font-specification:Segoe Print"
+       x="60"
+       y="892.36218"
+       id="text3035"
+       sodipodi:linespacing="125%"><title
+         id="title3107">metadata</title><tspan
+         sodipodi:role="line"
+         id="tspan3037"
+         x="60"
+         y="892.36218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">{</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="898.61218"
+         id="tspan3047"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  &quot;pixels_per_meter&quot;: 2.0,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="904.86218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3111">  &quot;empty_mass&quot;: 8.10e5,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="911.11218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3113">  &quot;fuel_mass&quot;: 2.97e6,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="917.36218"
+         id="tspan3039"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  &quot;radius&quot;: 10.0,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="923.61218"
+         id="tspan3043"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  &quot;length&quot;: 85.0,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="929.86218"
+         id="tspan3051"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  &quot;center_of_gravity&quot;: &quot;rocket_cog&quot;,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="936.11218"
+         id="tspan3053"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  &quot;engines&quot;: [</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="942.36218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3065">    {</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="948.61218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3081">     &quot;id&quot;: &quot;rocket_engine0&quot;,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="954.86218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3083">     &quot;thrust&quot;: 1.128e7</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="961.11218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3085">    },</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="967.36218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3087">    {</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="973.61218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3089">     &quot;id&quot;: &quot;rocket_engine1&quot;,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="979.86218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3091">     &quot;thrust&quot;: 1.128e7</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="986.11218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3093">    },</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="992.36218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3095">    {</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="998.61218"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3097">     &quot;id&quot;: &quot;rocket_engine2&quot;,</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1004.8622"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3099">     &quot;thrust&quot;: 1.128e7</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1011.1122"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas"
+         id="tspan3103">    }</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1017.3622"
+         id="tspan3055"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">  ]</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1023.6122"
+         id="tspan3049"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas">}</tspan><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1029.8622"
+         id="tspan3045"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas" /><tspan
+         sodipodi:role="line"
+         x="60"
+         y="1036.1122"
+         id="tspan3041"
+         style="font-size:5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas" /></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#5292f4;fill-opacity:1;stroke:none"
+       id="rocket_cog"
+       sodipodi:cx="20"
+       sodipodi:cy="967.36218"
+       sodipodi:rx="5"
+       sodipodi:ry="5"
+       d="m 25,967.36218 a 5,5 0 1 1 -10,0 5,5 0 1 1 10,0 z">
+      <title
+         id="title3124">center_of_gravity</title>
+    </path>
+  </g>
+</svg>

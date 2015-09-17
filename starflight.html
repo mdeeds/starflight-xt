@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>StarFlight-XT</title>
+<script src="jquery-1.11.3.min.js"></script>
+<script src="vector.js"></script>
+<script src="render.js"></script>
+<script src="planets.js"></script>
+<script src="starflight.js"></script>
+
+</head>
+<body onload='init()'>
+
+
+<script>
+init = function() {
+  var s = new SvgObject('cape.svg');
+  var r = new SvgObject('rocket.svg');
+  InitializeRender('playfield');
+  AngleAt(0);
+  LookAt(new Vector2D(200, -150))
+  s.RenderSvg(new Vector2D(0,0), 1.0);
+  r.RenderSvg(new Vector2D(0,-110), 1.0);
+}
+</script>
+
+<div id="playfield">
+<div>Net force = SUM(F_i) = d(m v_cm) / dt</div>
+<div>That is, sum up the individual force vectors.  Divide by mass, and you have change in velocity at the center of mass.</div>
+<div> The inertia of a cylinder is m r^2 / 4 + m l^2 / 12.  r is the radius, l is the length, it rotates end over end.</div>
+<div> Net torque = SUM(r_i x F_i) = d(I_cm omega) / dt</div>
+<div> Sum the cross of the force with a radius to the center of mass.  Divide by inertia, and you have change in angular velocity.</div>
+</div>
+
+<h1>The story</h1>
+<h2>Launch</h2>
+<h2>Make safe distance</h2>
+Stage 1 decouples
+<h2>Land stage 1</h2>
+<h2>Obtain Earth Orbit</h2>
+Stage 2 decouples 
+<h2>Match IIS orbit</h2>
+<h2>Dock with IIS</h2>
+<h2>Launch pilot capsule</h2>
+<h2>Dock with interplanetary vessel</h2>
+<h2>Slingshot Earth/Moon to head for Mars</h2>
+
+</body>
+</html>

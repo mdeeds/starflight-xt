@@ -1,0 +1,128 @@
+<head>
+
+<script src="test.js"></script>
+<script src="vector.js"></script>
+<script src="throttle.js"></script>
+<script src="attitude.js"></script>
+<script src="object.js"></script>
+<script src="force.js"></script>
+<script src="frame.js"></script>
+<script src="planets.js"></script>
+<script src="time.js"></script>
+<script src="render.js"></script>
+
+</head>
+<body>
+
+<div id='playfield'></div>
+<div id='slider'></div>
+<hr>
+<div id='solar'></div>
+<hr>
+
+<script>
+  Log('<b>Vector2D</b>');
+  var v = new Vector2D(1,2);
+  Log("(1, 2) = " + v);
+  
+  // frame_0, origin
+  // frame_1, x +10
+  // frame_2, x +20, rotated 90 degrees
+  //    0 f0    ^ f1    < f2
+  //
+  
+  var frame_0 = new RotatingFrame(null, new Attitude());
+  var frame_1 = new RotatingFrame(frame_0, new Attitude(new Vector2D(10,0), 0.0));
+  var frame_2 = new RotatingFrame(frame_1, new Attitude(new Vector2D(10,0), 0.0, PI/2.0));
+
+  var attitude34 = new Attitude(new Vector2D(3, 4), 0.0);
+  Log("(3, 4) = " + attitude34.x);
+  var tmp;
+  tmp = attitude34.Clone(); frame_0.TransformToParent(tmp); 
+  Log("(3, 4) = " + tmp.x);
+  tmp = attitude34.Clone(); frame_1.TransformToParent(tmp); 
+  Log("(13, 4) = " + tmp.x);
+  tmp = attitude34.Clone(); frame_2.TransformToParent(tmp);
+  Log("(6, 3) = " + tmp.x);
+  frame_1.TransformToParent(tmp);
+  Log("(16, 3) = " + tmp.x);
+    
+  var a = new Attitude();
+  Log("<i>Attitude: </i>"  + JSON.stringify(a));
+  Log('<b>ApplyGravity</b>');
+  Cape.ApplyGravity(a);
+  Log("<i>Attitude: </i>"  + JSON.stringify(a));
+  Log("One gee: " + a.a);
+  
+  Log('<b>ApplyCentrifugal</b>')
+  Cape.ApplyCentrifugal(a);
+  Log("<i>Attitude: </i>"  + JSON.stringify(a));
+  Log("With rotation: " + a.a);
+    
+  Log('<b>Render</b>');
+  var slider_canvas = new RenderCanvas('slider', 800, 50);
+  slider_canvas.AngleAt(0);
+  slider_canvas.LookAt(new Vector2D(400, -25), 1.0)
+  var s = SvgObject.FromSvgFile(slider_canvas, 'time-slider.svg');
+  s.RenderSvg(new Vector2D(-100,-50));
+
+  var play_canvas = new RenderCanvas('playfield', 800, 450);
+  play_canvas.AngleAt(0);
+  play_canvas.LookAt(new Vector2D(0, 85), 2)
+  var cape_svg = SvgObject.FromSvgFile(play_canvas, 'cape.svg');
+  cape_svg.RenderSvg(new Vector2D());
+  
+  var starship = SvgObject.FromSvgFile(play_canvas, 'rocket.svg');
+  starship.RenderSvg(new Vector2D(0, 85/2.0));
+  
+  Log('<b>Parse SVG</b>');
+  
+  var onMetadata = function(o) {
+    if (o.metadata) {
+	  Log('<b>Metadata Callback</b>');
+      Log('metadata: ' + JSON.stringify(o.metadata));
+	} else {
+	  setTimeout(function(x) { return function() { onMetadata(x); }}(o), 1000);
+	}
+  }
+  onMetadata(starship);
+  
+  Log('render done.');
+  
+  Log('<b>Object</b>');
+  var text = '{"empty_mass": 8.10e5, "fuel_mass": 2.97e6,  "radius": 10.0,  "length": 85.0 }';
+  var o = SolidObject.FromMetadata(JSON.parse(text));
+  Log('object: ' + o);
+  
+  Log('<b>Force</b>');
+  var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
+  Log('f: ' + f);
+  f.Apply(o);
+  Log('Going up: ' + o);
+  var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
+  f2.Apply(o);
+  Log('... and spinning: ' + o);
+  Cape.ApplyGravity(o.attitude);
+  Log('... and gravity: ' + o);
+  Cape.ApplyCentrifugal(o.attitude);
+  Log('... and centrifugal: ' + o);
+  
+  Log('<b>Throttle</b>');
+  var t = new Throttle();
+  t.Add(new StatePoint(1.0, 2.0));
+  Log('0.0 = ' + t.GetThrottle(0.0, 2.0));
+  Log('0.5 = ' + t.GetThrottle(1.0, 3.0));
+  Log('1.0 = ' + t.GetThrottle(2.0, 4.0));
+
+  
+  var solar_canvas = new RenderCanvas('solar', 800, 450, '#000000');
+  solar_canvas.AngleAt(0);
+  solar_canvas.LookAt(new Vector2D(1e2, 0), 1e-8);
+  var sun = SvgObject.FromSvgFile(solar_canvas, 'sun.svg');
+  onMetadata(sun);
+  sun.RenderSvg(new Vector2D(0, 0));
+  
+  
+</script>
+
+</body>
