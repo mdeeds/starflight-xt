@@ -42,6 +42,11 @@ Vector2D.prototype.Add = function(that) {
 	this.y = this.y + that.y;
 }
 
+Vector2D.prototype.CopyFrom = function(other) {
+	this.x = other.x;
+	this.y = other.y;
+}
+
 Vector2D.prototype.toString = function() {
 	return "(" + this.x + ", " + this.y + ")";
 }
