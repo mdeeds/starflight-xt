@@ -60,11 +60,11 @@ RotatingFrame.prototype.ApplyGravity = function(attitude) {
 	for (var i=0; i < this.solid_objects.length; ++i) {
 		var solid_object = this.solid_objects[i];
 		Log("Mass: " + solid_object.mass);
-		var num = G * solid_object.mass;
+		var mu = G * solid_object.mass;
 		var direction = Vector2D.Difference(solid_object.attitude.x, attitude.x);
 		var r = direction.Length();
 		Log("Radius: " + r);
-		direction.Scale(num / r / r / r);
+		direction.Scale(mu / r / r / r);
 		attitude.a.Add(direction);
 	}
 	// TODO: Child frames
