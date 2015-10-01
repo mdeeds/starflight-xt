@@ -4,7 +4,7 @@
 <script src="vector.js"></script>
 <script src="throttle.js"></script>
 <script src="attitude.js"></script>
-<script src="object.js"></script>
+<script src="svgobject.js"></script>
 <script src="force.js"></script>
 <script src="frame.js"></script>
 <script src="planets.js"></script>
@@ -60,20 +60,16 @@
   Log("With rotation: " + a.a);
     
   Log('<b>Render</b>');
-  var slider_canvas = new RenderCanvas('slider', 800, 50);
-  slider_canvas.AngleAt(0);
-  slider_canvas.LookAt(new Vector2D(400, -25), 1.0)
-  var s = SvgObject.FromSvgFile(slider_canvas, 'time-slider.svg');
-  s.RenderSvg(new Vector2D(-100,-50));
 
   var play_canvas = new RenderCanvas('playfield', 800, 450);
   play_canvas.AngleAt(0);
   play_canvas.LookAt(new Vector2D(0, 85), 2)
-  var cape_svg = SvgObject.FromSvgFile(play_canvas, 'cape.svg');
-  cape_svg.RenderSvg(new Vector2D());
-  
-  var starship = SvgObject.FromSvgFile(play_canvas, 'rocket.svg');
-  starship.RenderSvg(new Vector2D(0, 85/2.0));
+  var cape_svg = SvgObject.FromSvgFile('cape.svg');
+  Cape.AddSolidObject(cape_svg);
+  var starship = SvgObject.FromSvgFile('rocket.svg');
+  starship.SetPosition(new Vector2D(0, 85/2.0));
+  Cape.AddSolidObject(starship);
+  Cape.RenderSvg(play_canvas);
   
   Log('<b>Parse SVG</b>');
   
@@ -90,37 +86,42 @@
   Log('render done.');
   
   Log('<b>Object</b>');
-  var text = '{"empty_mass": 8.10e5, "fuel_mass": 2.97e6,  "radius": 10.0,  "length": 85.0 }';
-  var o = SolidObject.FromMetadata(JSON.parse(text));
-  Log('object: ' + o);
+  Log('starship: ' + starship);
   
   Log('<b>Force</b>');
   var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
   Log('f: ' + f);
-  f.Apply(o);
-  Log('Going up: ' + o);
+  f.Apply(starship);
+  Log('Going up: ' + starship.attitude);
   var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
-  f2.Apply(o);
-  Log('... and spinning: ' + o);
-  Cape.ApplyGravity(o.attitude);
-  Log('... and gravity: ' + o);
-  Cape.ApplyCentrifugal(o.attitude);
-  Log('... and centrifugal: ' + o);
+  f2.Apply(starship);
+  Log('... and spinning: ' + starship.attitude);
+  Cape.ApplyGravity(starship.attitude);
+  Log('... and gravity: ' + starship.attitude);
+  Cape.ApplyCentrifugal(starship.attitude);
+  Log('... and centrifugal: ' + starship.attitude);
   
-  Log('<b>Throttle</b>');
-  var t = new Throttle();
-  t.Add(new StatePoint(1.0, 2.0));
-  Log('0.0 = ' + t.GetThrottle(0.0, 2.0));
-  Log('0.5 = ' + t.GetThrottle(1.0, 3.0));
-  Log('1.0 = ' + t.GetThrottle(2.0, 4.0));
+  //Log('<b>Throttle</b>');
+  //var t = new Throttle();
+  //t.Add(new StatePoint(1.0, 2.0));
+  //Log('0.0 = ' + t.GetThrottle(0.0, 2.0));
+  //Log('0.5 = ' + t.GetThrottle(1.0, 3.0));
+  //Log('1.0 = ' + t.GetThrottle(2.0, 4.0));
 
-  
   var solar_canvas = new RenderCanvas('solar', 800, 450, '#000000');
   solar_canvas.AngleAt(0);
-  solar_canvas.LookAt(new Vector2D(1e2, 0), 1e-8);
-  var sun = SvgObject.FromSvgFile(solar_canvas, 'sun.svg');
-  onMetadata(sun);
-  sun.RenderSvg(new Vector2D(0, 0));
+  solar_canvas.LookAt(new Vector2D(1.49598261000e11, 0), 1e-6);
+
+  EarthFrame.RenderSvg(solar_canvas);
+  
+  
+  //// compute a trajectory to intercept with the moon after it rotates around
+  //// Start (relative to Earth): new Vector2D(0, -6.471e6)
+  //var p = new SolidObject(new Vector2D(0, -6.471e6), /*radius*/3.0, /*mass*/1000.0);
+  //// Start Velocity: new Vector2D(1.101e4, 0)
+  //p.SetVelocity(new Vector2D(1.101e4, 0));
+  
+  
   
   
 </script>

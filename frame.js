@@ -43,9 +43,6 @@ RotatingFrame.prototype.AddSolidObject = function(solid_object) {
 	this.solid_objects.push(solid_object);
 }
 
-RotatingFrame.prototype.RemoveRotation = function(attitude) {
-	
-}
 
 G = 6.67384e-11;
 
@@ -105,8 +102,17 @@ RotatingFrame.prototype.ApplyCentrifugal = function(attitude) {
 		attitude.theta = oldT;
 		attitude.a.Rotate(-this.attitude.theta);
 	}
-	
 }
+
+RotatingFrame.prototype.RenderSvg = function(render_canvas) {
+  for (var i = 0; i < this.solid_objects.length; ++i) {
+	  var svg_object = this.solid_objects[i];
+	  svg_object.RenderInto(render_canvas);
+  }
+  // TODO: Child frames
+  // TODO: Parent frames
+}
+
 
 // Returns a function which takes a SolidObject in this frame and returns 
 // 
