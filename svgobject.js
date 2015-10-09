@@ -49,6 +49,7 @@ SvgObject.prototype.resetAcc = function() {
 
 SvgObject.FromSvgFile = function(svg_file) {
 	var self = new SvgObject();
+	self.file_name = svg_file;
 	self.loaded = false;
 	console.log('SvgObject(' + svg_file + ')');
 	self.scale = 1.0; // May be overridden by pixels_per_meter:X in SVG
@@ -129,7 +130,7 @@ SvgObject.prototype.OnSvgLoad = function(xhr) {
 	this.loaded = true;
 }
 
-SvgObject.prototype.RenderInto = function(render_canvas) {
+SvgObject.prototype.RenderInto = function(render_canvas, posttransform) {
 	var position = this.attitude.x;
 	var draw_scale = this.scale;
 	
@@ -141,22 +142,29 @@ SvgObject.prototype.RenderInto = function(render_canvas) {
 	
 	  var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 	  console.log('this.scale: ' + this.scale);
-	  var transform = 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
-	      + 'scale(' + render_canvas.look_scale + ') '
-          + 'translate(' + (position.x-render_canvas.look_at.x) + ', ' + (render_canvas.look_at.y-position.y)+ ')'
+	  var transform = ''
+	      //+ 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
+	      //+ 'scale(' + render_canvas.pixels_per_meter + ') '
+          //+ 'translate(' + (position.x-render_canvas.look_at.x) + ', ' + (render_canvas.look_at.y-position.y)+ ')'
 	      + 'scale('+ (1.0 / this.scale) +') '
-		  + 'rotate(' + (-render_canvas.look_theta_degrees)+')'
-		  + 'translate(' + (-this.position.x) + ', ' + (-this.position.y) + ')';
+		  
+		  + 'rotate(' + (-render_canvas.look_theta_degrees)+') '
+		  + 'translate(' + (-this.position.x) + ', ' + (-this.position.y) + ') '
+		  + (posttransform ? posttransform : "");
 	  console.log('transform: ' + transform);
+	  
+	  console.log('Alternate transform: ' + render_canvas.GetTransform());
+	  
 	  g.setAttribute('transform', transform);
 	  g.appendChild(this.svg);
-	  render_canvas.svg_display.appendChild(g);
+	  //render_canvas.svg_display.appendChild(g);
+	  render_canvas.g.appendChild(g);
 	} else {
 		setTimeout(function(self) {
-		  return function(render_canvas) {
-			  self.RenderInto(render_canvas)
+		  return function(render_canvas, posttransform) {
+			  self.RenderInto(render_canvas, posttransform)
 		  }
-		} (this), 100, render_canvas);
+		} (this), 100, render_canvas, posttransform);
 	}
 }
 

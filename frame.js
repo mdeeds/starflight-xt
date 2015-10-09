@@ -104,13 +104,21 @@ RotatingFrame.prototype.ApplyCentrifugal = function(attitude) {
 	}
 }
 
-RotatingFrame.prototype.RenderSvg = function(render_canvas) {
+RotatingFrame.prototype.GetTransform = function() {
+	return 'translate(' + (-this.attitude.x.x) + ', ' + (-this.attitude.x.y) + ')' 
+		+ ' rotate(' + (-180 * this.attitude.theta / PI) + ')';
+}
+
+RotatingFrame.prototype.RenderSvg = function(render_canvas, posttransform) {
   for (var i = 0; i < this.solid_objects.length; ++i) {
 	  var svg_object = this.solid_objects[i];
-	  svg_object.RenderInto(render_canvas);
+	  svg_object.RenderInto(render_canvas, posttransform);
   }
   // TODO: Child frames
-  // TODO: Parent frames
+  	if (this._parent) {
+	  var compound_transform = (posttransform ? posttransform : '') + ' ' + this.GetTransform();
+	  this._parent.RenderSvg(render_canvas, compound_transform);
+	}
 }
 
 
