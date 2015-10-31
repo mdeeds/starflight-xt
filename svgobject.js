@@ -146,6 +146,7 @@ SvgObject.prototype.RenderInto = function(render_canvas, posttransform) {
 	      //+ 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
 	      //+ 'scale(' + render_canvas.pixels_per_meter + ') '
           //+ 'translate(' + (position.x-render_canvas.look_at.x) + ', ' + (render_canvas.look_at.y-position.y)+ ')'
+		  + 'translate(' + (position.x) + ', ' + (-position.y) + ') '
 	      + 'scale('+ (1.0 / this.scale) +') '
 		  
 		  + 'rotate(' + (-render_canvas.look_theta_degrees)+') '

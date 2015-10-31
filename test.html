@@ -67,7 +67,7 @@
   var cape_svg = SvgObject.FromSvgFile('cape.svg');
   Cape.AddSolidObject(cape_svg);
   var starship = SvgObject.FromSvgFile('rocket.svg');
-  starship.SetPosition(new Vector2D(0, 85/2.0));
+  starship.SetPosition(new Vector2D(-7, 85/2.0));
   Cape.AddSolidObject(starship);
   Cape.RenderSvg(play_canvas);
   
@@ -110,7 +110,7 @@
 
   var solar_canvas = new RenderCanvas('solar', 800, 450, '#000000');
   solar_canvas.AngleAt(0);
-  solar_canvas.LookAt(new Vector2D(1.49598261000e11, 0), 1e-6);
+  solar_canvas.LookAt(new Vector2D(0, 0), 1e-5);
 
   EarthFrame.RenderSvg(solar_canvas);
   
