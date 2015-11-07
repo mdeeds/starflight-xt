@@ -135,19 +135,19 @@
 <script>
 
 var path = new Path();
-path.setWidth(3);
-path.setColor('white');
-path.Add(new Vector2D(100, 100);
-path.Add(new Vector2D(300, 100);
-path.Add(new Vector2D(300, 300);
-path.Add(new Vector2D(100, 300);
-path.Add(new Vector2D(100, 100);
+path.SetWidth(3);
+path.SetColor('white');
+path.Add(new Vector2D(100, 100));
+path.Add(new Vector2D(300, 100));
+path.Add(new Vector2D(300, 300));
+path.Add(new Vector2D(100, 300));
+path.Add(new Vector2D(100, 100));
 
 var svg = document.getElementById('path-test');
 var m = svg.createSVGMatrix();
 m = m.scale(0.5);
 var g = document.getElementById('target');
-g.transform.baseVal.appendItem(svg.createSVGTransformFromMatrix(m));
+// g.transform.baseVal.appendItem(svg.createSVGTransformFromMatrix(m));
 
 g.appendChild(path.SvgPath(m));
 

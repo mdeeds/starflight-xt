@@ -80,7 +80,7 @@ Vector2D.MatrixMultiply = function(m, v) {
 Vector2D.MatrixMultiplyArray = function(m, a) {
   var result = [];
   for (var i = 0; i < a.length; ++i) {
-    result.concat(Vector2D.MatrixMultiply(m, a[i]));
+    result = result.concat(Vector2D.MatrixMultiply(m, a[i]));
   }
   return result;
 }

@@ -5,11 +5,11 @@ var Path = function() {
 }
 
 Path.prototype.Add = function(v) {
-  points.concat(v);
+  this.points = this.points.concat(v);
 }
 
 Path.prototype.SetWidth = function(w) {
-  this.width = 1;
+  this.width = w;
 }
 
 Path.prototype.SetColor = function(c) {
@@ -18,7 +18,9 @@ Path.prototype.SetColor = function(c) {
 
 // Returns an SVG 'path' object after transforming all points by matrix m.
 Path.prototype.SvgPath = function(m) {
+  console.log('Point count: ' + this.points.length);
   var newPoints = Vector2D.MatrixMultiplyArray(m, this.points);
+  console.log('New point count: ' + newPoints.length);
 
   var pathString = 'M ' + newPoints[0].x + ' ' + newPoints[0].y + ' Q';
 
