@@ -1,0 +1,36 @@
+<HTML>
+<BODY>
+Hello
+<svg id='svg' width=800 height=400>
+
+<circle cx=100 cy=100 r=80 stroke='red' fill='transparent'/> 
+<g transform="scale(0.5) translate(100, 100)">
+<circle cx=100 cy=100 r=80 stroke='green' fill='transparent'/> 
+</g>
+<g id='target'>
+<circle cx=100 cy=100 r=80 stroke='blue' fill='transparent'/> 
+</g>
+
+
+</svg>
+
+<script>
+var svg = document.getElementById('svg');
+var m = svg.createSVGMatrix();
+m = m.scale(0.5);
+m = m.translate(100, 100);
+var g = document.getElementById('target');
+g.transform.baseVal.appendItem(svg.createSVGTransformFromMatrix(m));
+
+</script>
+
+
+
+
+
+</BODY>
+
+
+
+
+</HTML>
