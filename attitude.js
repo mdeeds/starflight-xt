@@ -19,6 +19,13 @@ var Attitude = function() {
 	}
 }
 
+Attitude.prototype.Step = function(timeStepSeconds) {
+  this.v.Add(this.a);
+  this.x.Add(this.v);
+  this.omega += this.tau;
+  this.theta += this.omega;
+}
+
 Attitude.prototype.Clone = function() {
 	var result = new Attitude();
     result.x = new Vector2D(this.x);

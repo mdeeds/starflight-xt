@@ -41,15 +41,26 @@ SvgObject.prototype.SetPosition = function(x) {
     this.attitude.x.CopyFrom(x);
 }
 
+SvgObject.prototype.GetPosition = function() {
+  return this.attitude.x;
+}
+
 SvgObject.prototype.SetMass = function(massInKilograms) {
   this.mass = massInKilograms;
 }
 
-SvgObject.prototype.resetAcc = function() {
+SvgObject.prototype.ResetAcc = function() {
   this.attitude.a.x = 0.0;
   this.attitude.a.y = 0.0;
   this.attitude.tau = 0.0;
 }
+
+SvgObject.prototype.Step = function(timeStepSeconds) {
+  this.attitude.Step(timeStepSeconds);
+  this.ResetAcc();
+}
+
+
 
 SvgObject.FromSvgFile = function(svg_file) {
   var self = new SvgObject();

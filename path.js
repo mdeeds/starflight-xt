@@ -5,7 +5,7 @@ var Path = function() {
 }
 
 Path.prototype.Add = function(v) {
-  this.points = this.points.concat(v);
+  this.points = this.points.concat(v.Clone());
 }
 
 Path.prototype.SetWidth = function(w) {
@@ -22,7 +22,7 @@ Path.prototype.SvgPath = function(m) {
   var newPoints = Vector2D.MatrixMultiplyArray(m, this.points);
   console.log('New point count: ' + newPoints.length);
 
-  var pathString = 'M ' + newPoints[0].x + ' ' + newPoints[0].y + ' Q';
+  var pathString = 'M ' + newPoints[0].x + ' ' + newPoints[0].y + ' L';
 
   for (var i = 1; i < newPoints.length; ++i) {
     pathString = pathString + ' ' + newPoints[i].x + ' ' + newPoints[i].y
