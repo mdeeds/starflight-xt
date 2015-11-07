@@ -71,36 +71,35 @@
   starship.SetPosition(new Vector2D(0, 85/2.0));
   Cape.AddSolidObject(starship);
   Cape.RenderSvg(play_canvas);
-  
+  Log('render done.');
+    
   Log('<b>Parse SVG</b>');
   
   var onMetadata = function(o) {
     if (o.metadata) {
-	  Log('<b>Metadata Callback</b>');
+      Log('<b>Metadata Callback</b>');
       Log('metadata: ' + JSON.stringify(o.metadata));
-	} else {
-	  setTimeout(function(x) { return function() { onMetadata(x); }}(o), 1000);
-	}
+      Log('<b>Object</b>');
+      Log('starship: ' + starship);
+      
+      Log('<b>Force</b>');
+      var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
+      Log('f: ' + f);
+      f.Apply(starship);
+      Log('Going up: ' + starship.attitude);
+      var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
+      f2.Apply(starship);
+      Log('... and spinning: ' + starship.attitude);
+      Cape.ApplyGravity(starship.attitude);
+      Log('... and gravity: ' + starship.attitude);
+      Cape.ApplyCentrifugal(starship.attitude);
+      Log('... and centrifugal: ' + starship.attitude);
+    } else {
+      setTimeout(function(x) { return function() { onMetadata(x); }}(o), 1000);
+    }
   }
   onMetadata(starship);
   
-  Log('render done.');
-  
-  Log('<b>Object</b>');
-  Log('starship: ' + starship);
-  
-  Log('<b>Force</b>');
-  var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
-  Log('f: ' + f);
-  f.Apply(starship);
-  Log('Going up: ' + starship.attitude);
-  var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
-  f2.Apply(starship);
-  Log('... and spinning: ' + starship.attitude);
-  Cape.ApplyGravity(starship.attitude);
-  Log('... and gravity: ' + starship.attitude);
-  Cape.ApplyCentrifugal(starship.attitude);
-  Log('... and centrifugal: ' + starship.attitude);
   
   //Log('<b>Throttle</b>');
   //var t = new Throttle();
@@ -152,5 +151,21 @@ var g = document.getElementById('target');
 g.appendChild(path.SvgPath(m));
 
 </script>
+
+<svg width=200 height=200 id='trajectory'>
+</svg>
+
+var trajectory = new Path();
+var o = new SvgObject();
+o.SetMass(100);
+o.SetVelocity(new Vector2D(1.0, 1.0));
+
+var time_step = 0.1; // Seconds
+for (var i=0; i<100; ++i) {
+  
+}
+
+
+
 
 </body>
