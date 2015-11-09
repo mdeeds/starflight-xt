@@ -37,6 +37,7 @@ RenderCanvas.prototype.LookAt = function(position, pixels_per_meter) {
 	if (pixels_per_meter) {
 		this.pixels_per_meter = pixels_per_meter;
 	}
+  console.log("Set look_at: " + this.look_at);  
 }
 
 RenderCanvas.prototype.AngleAt = function(theta) {

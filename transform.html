@@ -1,0 +1,62 @@
+<HTML>
+<BODY>
+Hello
+<svg id='svg' width=800 height=400>
+
+<circle cx=100 cy=100 r=80 stroke='red' fill='transparent'/> 
+<g transform="scale(0.5) translate(100, 100)">
+<circle cx=100 cy=100 r=80 stroke='green' fill='transparent'/> 
+</g>
+<g id='target'>
+<circle cx=100 cy=100 r=80 stroke='blue' fill='transparent'/> 
+</g>
+</svg>
+
+<script>
+var svg = document.getElementById('svg');
+var m = svg.createSVGMatrix();
+m = m.scale(0.5);
+m = m.translate(100, 100);
+var g = document.getElementById('target');
+g.transform.baseVal.appendItem(svg.createSVGTransformFromMatrix(m));
+
+printMatrix = function(m) {
+  console.log('[' + m.a + ' ' + m.c + ' ' + m.e + ']');
+  console.log('[' + m.b + ' ' + m.d + ' ' + m.f + ']');
+}
+
+printMatrix(m);
+
+console.log('Rotating 5 degrees');
+m = m.rotate(5.0);
+printMatrix(m);
+
+scale = Math.sqrt(m.a * m.a + m.b * m.b);
+console.log('Scale: ' + scale);
+
+</script>
+
+
+
+<svg id='svg2' width=800 height=400>
+<circle cx=100 cy=100 r=75 stroke='red' fill='transparent'/> 
+<g transform="translate(100, 100) scale(1e-5) translate(-100, -100)">
+<circle cx=100 cy=100 r=8e6 stroke='green' fill='transparent' stroke-width='1e5'/> 
+</g>
+<g transform="translate(100, 100) scale(1e-6) translate(-100, -100)"> <!-- Wrong size -->
+<circle cx=100 cy=100 r=8e7 stroke='blue' fill='transparent' stroke-width='1e6'/> 
+</g>
+<g transform="translate(100, 100) scale(1e-7) translate(-100, -100)"> <!-- Doesn't render -->
+<circle cx=100 cy=100 r=8e8 stroke='black' fill='cyan' stroke-width='1e7'/> 
+</g>
+</svg>
+
+
+
+
+</BODY>
+
+
+
+
+</HTML>

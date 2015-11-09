@@ -66,3 +66,21 @@ Vector2D.prototype.Length = function() {
 Vector2D.Difference = function(vector_a, vector_b) {
 	return new Vector2D(vector_a.x - vector_b.x, vector_a.y - vector_b.y);
 }
+
+// [a c e]   [x]   
+// [b d f] * [y] = [ax + cy + e, bx + dy + f, 1]
+// [0 0 1]   [1]
+
+Vector2D.MatrixMultiply = function(m, v) {
+  var x = m.a * v.x + m.c * v.y + m.e;
+  var y = m.b * v.x + m.d * v.y + m.f;
+  return new Vector2D(x,y);
+} 
+
+Vector2D.MatrixMultiplyArray = function(m, a) {
+  var result = [];
+  for (var i = 0; i < a.length; ++i) {
+    result = result.concat(Vector2D.MatrixMultiply(m, a[i]));
+  }
+  return result;
+}

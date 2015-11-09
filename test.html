@@ -10,6 +10,7 @@
 <script src="planets.js"></script>
 <script src="time.js"></script>
 <script src="render.js"></script>
+<script src="path.js"></script>
 
 </head>
 <body>
@@ -70,36 +71,35 @@
   starship.SetPosition(new Vector2D(-7, 85/2.0));
   Cape.AddSolidObject(starship);
   Cape.RenderSvg(play_canvas);
-  
+  Log('render done.');
+    
   Log('<b>Parse SVG</b>');
   
   var onMetadata = function(o) {
     if (o.metadata) {
-	  Log('<b>Metadata Callback</b>');
+      Log('<b>Metadata Callback</b>');
       Log('metadata: ' + JSON.stringify(o.metadata));
-	} else {
-	  setTimeout(function(x) { return function() { onMetadata(x); }}(o), 1000);
-	}
+      Log('<b>Object</b>');
+      Log('starship: ' + starship);
+      
+      Log('<b>Force</b>');
+      var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
+      Log('f: ' + f);
+      f.Apply(starship);
+      Log('Going up: ' + starship.attitude);
+      var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
+      f2.Apply(starship);
+      Log('... and spinning: ' + starship.attitude);
+      Cape.ApplyGravity(starship.attitude);
+      Log('... and gravity: ' + starship.attitude);
+      Cape.ApplyCentrifugal(starship.attitude);
+      Log('... and centrifugal: ' + starship.attitude);
+    } else {
+      setTimeout(function(x) { return function() { onMetadata(x); }}(o), 1000);
+    }
   }
   onMetadata(starship);
   
-  Log('render done.');
-  
-  Log('<b>Object</b>');
-  Log('starship: ' + starship);
-  
-  Log('<b>Force</b>');
-  var f = new Force(new Vector2D(), new Vector2D(0, 3e7));
-  Log('f: ' + f);
-  f.Apply(starship);
-  Log('Going up: ' + starship.attitude);
-  var f2 = new Force(new Vector2D(12.0, 0.0), new Vector2D(0, 3e7));
-  f2.Apply(starship);
-  Log('... and spinning: ' + starship.attitude);
-  Cape.ApplyGravity(starship.attitude);
-  Log('... and gravity: ' + starship.attitude);
-  Cape.ApplyCentrifugal(starship.attitude);
-  Log('... and centrifugal: ' + starship.attitude);
   
   //Log('<b>Throttle</b>');
   //var t = new Throttle();
@@ -122,8 +122,62 @@
   //p.SetVelocity(new Vector2D(1.101e4, 0));
   
   
-  
-  
 </script>
+
+<svg width=200 height=200 id='path-test'>
+  <circle cx=100 cy=100 r=75 stroke='red' fill='transparent'/> 
+  <path stroke='blue' stroke-width=5 fill='none'
+     d='M 50 50 L 150 50 150 150 50 150 50 50' />
+  <g id='target' />
+</svg>
+
+<script>
+
+var path = new Path();
+path.SetWidth(3);
+path.SetColor('Lavender');
+path.Add(new Vector2D(100, 100));
+path.Add(new Vector2D(300, 100));
+path.Add(new Vector2D(300, 300));
+path.Add(new Vector2D(100, 300));
+path.Add(new Vector2D(100, 100));
+
+var svg = document.getElementById('path-test');
+var m = svg.createSVGMatrix();
+m = m.scale(0.5);
+var g = document.getElementById('target');
+// g.transform.baseVal.appendItem(svg.createSVGTransformFromMatrix(m));
+
+g.appendChild(path.SvgPath(m));
+
+</script>
+
+<svg width=200 height=200 id='trajectory' style='background:PowderBlue'>
+  <circle cx=100 cy=100 r=75 stroke='red' fill='none' />
+</svg>
+
+<script>
+var trajectory = new Path();
+var o = new SvgObject();
+o.SetMass(100);
+o.SetVelocity(new Vector2D(1.3, -3.0));
+o.SetPosition(new Vector2D(25, 100));
+
+var gravity = new Force(new Vector2D(0,0), new Vector2D(0, 9.8));
+
+var timeStepSeconds = 0.1;
+for (var i=0; i<100; ++i) {
+  trajectory.Add(o.GetPosition());
+  o.ResetAcc();
+  gravity.Apply(o);
+  o.Step(timeStepSeconds);
+}
+
+var svg = document.getElementById('trajectory');
+var m = svg.createSVGMatrix();
+svg.appendChild(trajectory.SvgPath(m));
+
+</script>
+
 
 </body>
