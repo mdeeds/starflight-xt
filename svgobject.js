@@ -145,7 +145,12 @@ SvgObject.prototype.OnSvgLoad = function(xhr) {
   this.loaded = true;
 }
 
-SvgObject.prototype.RenderInto = function(render_canvas, posttransform) {
+var ConsoleLogMatrix = function(m) {
+  console.log('[' + m.a + ' ' + m.c + ' ' + m.e + ']');
+  console.log('[' + m.b + ' ' + m.d + ' ' + m.f + ']');
+}
+
+SvgObject.prototype.RenderInto = function(render_canvas, pretransform) {
   var position = this.attitude.x;
   var draw_scale = this.scale;
   
@@ -156,30 +161,52 @@ SvgObject.prototype.RenderInto = function(render_canvas, posttransform) {
     // then multiply by provided pixels_per_meter to get pixels on the screen.
   
     var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    console.log('this.scale: ' + this.scale);
-    var transform = ''
-        //+ 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
-        //+ 'scale(' + render_canvas.pixels_per_meter + ') '
-              + 'translate(' + (position.x) + ', ' + (-position.y)+ ')'
-        + 'scale('+ (1.0 / this.scale) +') '
-      
-      + 'rotate(' + (-render_canvas.look_theta_degrees)+') '
-      + 'translate(' + (-this.position.x) + ', ' + (-this.position.y) + ') '
-      + (posttransform ? posttransform : "");
-    console.log('transform: ' + transform);
-    
-    console.log('Alternate transform: ' + render_canvas.GetTransform());
-    
-    g.setAttribute('transform', transform);
     g.appendChild(this.svg);
+    console.log('this.scale: ' + this.scale);
+	
+	
+	var matrix = render_canvas.GetSvg().createSVGMatrix();
+	if (pretransform) {
+      console.log("pretransform:");
+      ConsoleLogMatrix(pretransform);
+	  matrix = matrix.multiply(pretransform);
+	}
+    matrix = matrix.translate(position.x, -position.y);
+	matrix = matrix.scale(1.0 / this.scale);
+	matrix = matrix.rotate(-render_canvas.look_theta_degrees); 
+	matrix = matrix.translate(-this.position.x, -this.position.y);
+	console.log('Final Matrix:');
+	ConsoleLogMatrix(matrix);
+	
+    //var transform = ''
+    //    //+ 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
+    //    //+ 'scale(' + render_canvas.pixels_per_meter + ') '
+    //          + 'translate(' + (position.x) + ', ' + (-position.y)+ ')'
+    //    + 'scale('+ (1.0 / this.scale) +') '
+    //  
+    //  + 'rotate(' + (-render_canvas.look_theta_degrees)+') '
+    //  + 'translate(' + (-this.position.x) + ', ' + (-this.position.y) + ') '
+    //  + (pretransform ? pretransform : "");
+    //console.log('transform: ' + transform);
+    
+    console.log('Alternate transform: ');
+    ConsoleLogMatrix(render_canvas.GetTransform());
+    
+	console.log('No Transform: ' + g.getAttribute('transform'));
+    g.transform.baseVal.clear();
+    g.transform.baseVal.appendItem(
+	  render_canvas.GetSvg().createSVGTransformFromMatrix(matrix));
+	console.log('Transform: ' + g.getAttribute('transform'));
+    //g.setAttribute('transform', transform);
+	
     //render_canvas.svg_display.appendChild(g);
     render_canvas.g.appendChild(g);
   } else {
     setTimeout(function(self) {
-      return function(render_canvas, posttransform) {
-        self.RenderInto(render_canvas, posttransform)
+      return function(render_canvas, pretransform) {
+        self.RenderInto(render_canvas, pretransform)
       }
-    } (this), 100, render_canvas, posttransform);
+    } (this), 100, render_canvas, pretransform);
   }
 }
 

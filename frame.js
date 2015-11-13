@@ -104,9 +104,15 @@ RotatingFrame.prototype.ApplyCentrifugal = function(attitude) {
 	}
 }
 
+RotatingFrame.Svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
 RotatingFrame.prototype.GetTransform = function() {
-	return 'translate(' + (-this.attitude.x.x) + ', ' + (-this.attitude.x.y) + ')' 
-		+ ' rotate(' + (-180 * this.attitude.theta / PI) + ')';
+	var matrix = RotatingFrame.Svg.createSVGMatrix();
+	matrix.translate(-this.attitude.x.x, -this.attitude.x.y);
+	matrix.rotate(-180 * this.attitude.theta / PI);
+	return matrix;
+	//return 'translate(' + (-this.attitude.x.x) + ', ' + (-this.attitude.x.y) + ')' 
+	//	+ ' rotate(' + (-180 * this.attitude.theta / PI) + ')';
 }
 
 RotatingFrame.prototype.RenderSvg = function(render_canvas, posttransform) {
@@ -116,7 +122,11 @@ RotatingFrame.prototype.RenderSvg = function(render_canvas, posttransform) {
   }
   // TODO: Child frames
   	if (this._parent) {
-	  var compound_transform = (posttransform ? posttransform : '') + ' ' + this.GetTransform();
+	  var compound_transform = this.GetTransform();
+	  if (posttransform) {
+		  compound_transform = posttransform.multiply(compound_transform);
+	  }
+	  // var compound_transform = (posttransform ? posttransform : '') + ' ' + this.GetTransform();
 	  this._parent.RenderSvg(render_canvas, compound_transform);
 	}
 }

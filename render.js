@@ -16,17 +16,30 @@ var RenderCanvas = function(div_id, width, height, bg_color) {
 	this.pixels_per_meter = 1.0;
 
 	this.g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-	this.g.setAttribute('transform', this.GetTransform())	
+    var m = this.GetTransform();
+    var t = this.svg_display.createSVGTransformFromMatrix(m);
+    this.g.transform.baseVal.appendItem(t);
 	this.svg_display.appendChild(this.g);
 	this.playfield.onwheel = 
 	  function(self) { return function(e) { return self.OnWheel(e); } }(this);
 }
 
+RenderCanvas.prototype.GetSvg = function() {
+	return this.svg_display;
+}
+
 RenderCanvas.prototype.GetTransform = function() {
-	return 'translate(' + (this.width / 2) + ', '+ (this.height / 2) +') ' 
-	    + 'scale(' + this.pixels_per_meter + ') '
-		+ 'rotate(' + this.look_theta_degrees + ')'
-	    + 'translate(' + (this.look_at.x) + ', ' + (this.look_at.y) + ') '
+	var matrix = this.svg_display.createSVGMatrix();
+	matrix = matrix.translate(this.width / 2,this.height / 2) 
+	matrix = matrix.scale(this.pixels_per_meter) 
+	matrix = matrix.rotate(this.look_theta_degrees)
+	matrix = matrix.translate(this.look_at.x, this.look_at.y)
+	return matrix;
+	
+	//return 'translate(' + (this.width / 2) + ', '+ (this.height / 2) +') ' 
+	//    + 'scale(' + this.pixels_per_meter + ') '
+	//	+ 'rotate(' + this.look_theta_degrees + ')'
+	//    + 'translate(' + (this.look_at.x) + ', ' + (this.look_at.y) + ') '
 }
 
 RenderCanvas.prototype.LookAt = function(position, pixels_per_meter) {
@@ -79,7 +92,11 @@ RenderCanvas.prototype.OnWheel = function(e) {
   this.look_at.y = new_look_at.y;
   
   this.pixels_per_meter = new_zoom;
-  this.g.setAttribute('transform', this.GetTransform())
+  //this.g.setAttribute('transform', this.GetTransform())
+  var m = this.GetTransform();
+  var t = this.svg_display.createSVGTransformFromMatrix(m);
+  this.g.transform.baseVal.clear();
+  this.g.transform.baseVal.appendItem(t);
   return false;
 }
 
