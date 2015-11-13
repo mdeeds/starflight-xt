@@ -1,4 +1,8 @@
 
 
-
+* No nested groups in SVG.  Just a single transform
+  * Each object needs a pointer to its own group
+  * Find a way to push transforms down and have the objects update accordingly
+    Maybe a frame can have a SetDisplayMatrix method and it pushes through to the
+    children.  The children are the ones that actually modify the XML
 * Add 'mass' to rocket.svg metadata
