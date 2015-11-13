@@ -108,11 +108,9 @@ RotatingFrame.Svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'
 
 RotatingFrame.prototype.GetTransform = function() {
 	var matrix = RotatingFrame.Svg.createSVGMatrix();
-	matrix.translate(-this.attitude.x.x, -this.attitude.x.y);
-	matrix.rotate(-180 * this.attitude.theta / PI);
+	matrix = matrix.translate(-this.attitude.x.x, -this.attitude.x.y);
+	matrix = matrix.rotate(-180 * this.attitude.theta / PI);
 	return matrix;
-	//return 'translate(' + (-this.attitude.x.x) + ', ' + (-this.attitude.x.y) + ')' 
-	//	+ ' rotate(' + (-180 * this.attitude.theta / PI) + ')';
 }
 
 RotatingFrame.prototype.RenderSvg = function(render_canvas, posttransform) {
@@ -126,7 +124,6 @@ RotatingFrame.prototype.RenderSvg = function(render_canvas, posttransform) {
 	  if (posttransform) {
 		  compound_transform = posttransform.multiply(compound_transform);
 	  }
-	  // var compound_transform = (posttransform ? posttransform : '') + ' ' + this.GetTransform();
 	  this._parent.RenderSvg(render_canvas, compound_transform);
 	}
 }

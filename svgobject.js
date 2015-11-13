@@ -164,30 +164,18 @@ SvgObject.prototype.RenderInto = function(render_canvas, pretransform) {
     g.appendChild(this.svg);
     console.log('this.scale: ' + this.scale);
 	
-	
 	var matrix = render_canvas.GetSvg().createSVGMatrix();
+    matrix = matrix.translate(position.x, -position.y);
+	matrix = matrix.scale(1.0 / this.scale);
+	matrix = matrix.rotate(-render_canvas.look_theta_degrees); 
+	matrix = matrix.translate(-this.position.x, -this.position.y);
 	if (pretransform) {
       console.log("pretransform:");
       ConsoleLogMatrix(pretransform);
 	  matrix = matrix.multiply(pretransform);
 	}
-    matrix = matrix.translate(position.x, -position.y);
-	matrix = matrix.scale(1.0 / this.scale);
-	matrix = matrix.rotate(-render_canvas.look_theta_degrees); 
-	matrix = matrix.translate(-this.position.x, -this.position.y);
 	console.log('Final Matrix:');
 	ConsoleLogMatrix(matrix);
-	
-    //var transform = ''
-    //    //+ 'translate(' + (render_canvas.width / 2) + ', ' + (render_canvas.height / 2) + ') '
-    //    //+ 'scale(' + render_canvas.pixels_per_meter + ') '
-    //          + 'translate(' + (position.x) + ', ' + (-position.y)+ ')'
-    //    + 'scale('+ (1.0 / this.scale) +') '
-    //  
-    //  + 'rotate(' + (-render_canvas.look_theta_degrees)+') '
-    //  + 'translate(' + (-this.position.x) + ', ' + (-this.position.y) + ') '
-    //  + (pretransform ? pretransform : "");
-    //console.log('transform: ' + transform);
     
     console.log('Alternate transform: ');
     ConsoleLogMatrix(render_canvas.GetTransform());
@@ -197,7 +185,6 @@ SvgObject.prototype.RenderInto = function(render_canvas, pretransform) {
     g.transform.baseVal.appendItem(
 	  render_canvas.GetSvg().createSVGTransformFromMatrix(matrix));
 	console.log('Transform: ' + g.getAttribute('transform'));
-    //g.setAttribute('transform', transform);
 	
     //render_canvas.svg_display.appendChild(g);
     render_canvas.g.appendChild(g);
