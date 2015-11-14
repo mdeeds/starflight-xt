@@ -1,3 +1,9 @@
+// requires render.js
+
+// Basic visual game elements
+//   SvgObject.FromSvgFile - Loads SVG from a file
+//   SvgObject.prototype.RenderInto - Renders the SVG to a RenderCanvas (render.js)
+
 var SvgObject = function() {
   this.attitude = new Attitude();
   this.mass = 0.0;

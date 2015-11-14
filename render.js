@@ -1,3 +1,8 @@
+// Basic display device
+// RenderCanvas.prototype.OnWheel - handles zoom events
+// RenderCanvas.prototype.GetTransform - Transforms world-coordinates to screen coordinates
+// RenderCanvas.prototype.GetSvg - The svg element in the DOM
+
 var RenderCanvas = function(div_id, width, height, bg_color) {
 	this.playfield = document.getElementById(div_id);
 	this.svg_display = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

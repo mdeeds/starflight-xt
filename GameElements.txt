@@ -1,0 +1,24 @@
+
+
+Outpost -
+  Houses 6 people
+  Weighs nnn kG
+  Produces nnn watts at 1AU
+  Max thrust nnn N
+  Requires:
+    nnn kG refined materials
+    
+
+
+Solar panel -
+  Weighs nnn kG
+  Produces 1000 W at 1AU
+  Weighs nnn kG
+
+
+Engines 
+  References:
+    https://en.wikipedia.org/wiki/Rocket_propellant
+    http://www.braeunig.us/space/propel.htm
+
+  LOX/RP-1 

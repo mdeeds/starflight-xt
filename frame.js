@@ -1,7 +1,8 @@
-// supplies: RotatingFrame
-// requires: 
-//   Attitude
-//   *Object
+// requres svgobject.js
+
+// Nested containers for game content
+// RotatingFrame.prototype.RenderSvg - Renders the svg contained in this frame.
+
 
 var RotatingFrame = function(parent_frame, relative_attitude) {
 	this._parent = parent_frame;
