@@ -1,0 +1,25 @@
+http://www.webgraphviz.com/
+
+
+digraph G {
+  subgraph cluster_0 {
+    label = "frame.js"
+    RotatingFrame
+    RotatingFrame_RenderSvg
+  }
+  subgraph cluster_1 {
+    label = "render.js"
+    RenderCanvas
+    RenderCanvas_GetTransform
+    RenderCanvas_GetSvg
+  }
+  
+  subgraph cluster_2 {
+    label = "svgobject"
+    SvgObject
+    SvgObject_RenderInto
+  }
+
+  SvgObject_RenderInto -> RenderCanvas_GetSvg
+  RotatingFrame_RenderSvg -> SvgObject_RenderInto
+}

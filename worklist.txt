@@ -1,4 +1,6 @@
-
+* Put RenderCanvas at the top of the hierarchy
+  current: RotatingFrame -> SvgObject -> RenderCanvas
+  should be: RenderCanvas -> RotatingFrame -> SvgObject
 
 * No nested groups in SVG.  Just a single transform
   * Each object needs a pointer to its own group
